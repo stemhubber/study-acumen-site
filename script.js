@@ -1,51 +1,69 @@
 (function () {
   var cfg = window.SITE_CONFIG || {};
   var appUrl = (cfg.appUrl || "").replace(/\/$/, "");
+  var digits = (cfg.phone || "").replace(/[^0-9]/g, "");
 
-  document.querySelectorAll("[data-app-link]").forEach(function (a) {
-    a.href = appUrl + a.getAttribute("data-app-link");
-  });
+  function each(sel, fn) { document.querySelectorAll(sel).forEach(fn); }
 
-  document.querySelectorAll("[data-contact-link]").forEach(function (a) {
-    if (cfg.contactEmail) {
-      a.href = "mailto:" + cfg.contactEmail + "?subject=" + encodeURIComponent("Study Acumen enquiry");
-    } else {
-      a.href = appUrl + "/register";
-    }
+  each("[data-app-link]", function (a) { a.href = appUrl + a.getAttribute("data-app-link"); });
+  each("[data-whatsapp-link]", function (a) {
+    a.href = "https://wa.me/" + digits + "?text=" + encodeURIComponent(cfg.whatsappMessage || "");
+    a.target = "_blank";
+    a.rel = "noopener";
   });
+  each("[data-phone-link]", function (a) { a.href = "tel:" + cfg.phone; });
+  each("[data-email-link]", function (a) {
+    a.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Study Acumen enquiry");
+  });
+  each("[data-phone-text]", function (el) { el.textContent = cfg.phoneDisplay || cfg.phone; });
+  each("[data-email-text]", function (el) { el.textContent = cfg.email; });
 
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+  // Header: solid once scrolled past the top of the hero
+  var header = document.getElementById("site-header");
+  function onScroll() { header.classList.toggle("is-scrolled", window.scrollY > 24); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   // Mobile nav
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
-    });
-    nav.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
+  toggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    header.classList.toggle("nav-open", open);
+  });
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      nav.classList.remove("is-open");
+      header.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Reveal-on-scroll (content stays visible if IntersectionObserver is missing)
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("js-reveal");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-visible"); io.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    each(".reveal", function (el) { io.observe(el); });
   }
 
   // Top-up calculator: R1 = 5,000 tokens; free allowance is 150,000 tokens/day.
   var range = document.getElementById("calc-amount");
   var out = document.getElementById("calc-out");
-  if (range && out) {
-    var render = function () {
-      var rand = Number(range.value);
-      var tokens = rand * 5000;
-      var days = tokens / 150000;
-      out.textContent =
-        "R" + rand + " → " + tokens.toLocaleString("en-ZA") + " tokens ≈ " +
-        (Math.round(days * 10) / 10) + " extra day" + (days === 1 ? "" : "s") + " of AI help";
-    };
-    range.addEventListener("input", render);
-    render();
+  function render() {
+    var rand = Number(range.value);
+    var tokens = rand * 5000;
+    var days = Math.round((tokens / 150000) * 10) / 10;
+    out.textContent = "R" + rand + " → " + tokens.toLocaleString("en-ZA") + " tokens ≈ " +
+      days + " extra day" + (days === 1 ? "" : "s") + " of AI help";
   }
+  range.addEventListener("input", render);
+  render();
 })();
