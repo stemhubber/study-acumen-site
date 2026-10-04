@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Acumen | Smarter STEM for Grades 10–12</title>
+  <meta name="description" content="Study Acumen is a CAPS-aligned Maths and Physical Sciences platform for South African Grade 10–12 learners and their tutors: AI tutoring, practice papers, AI-assisted marking and class tools." />
+  <meta property="og:title" content="Study Acumen | Smarter STEM for Grades 10–12" />
+  <meta property="og:description" content="AI tutoring, past-paper practice and AI-assisted marking for South African Maths and Physical Sciences." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.svg" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Study Acumen home">
+        <img src="assets/logo.svg" alt="" width="56" height="28" />
+        <span>Study Acumen</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#about">About us</a>
+        <a href="#learners">Learners</a>
+        <a href="#tutors">Tutors</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn--small" data-app-link="/register" href="#">Start free</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">Grades 10–12 · Maths &amp; Physical Sciences · CAPS-aligned</p>
+          <h1>Study smarter for matric — with an AI tutor that shows its working.</h1>
+          <p class="lead">
+            Study Acumen brings AI tutoring, past-paper practice and AI-assisted marking
+            together for South African learners and the tutors who teach them.
+          </p>
+          <div class="hero__actions">
+            <a class="btn" data-app-link="/register" href="#">Create a free account</a>
+            <a class="btn btn--ghost" href="#pricing">See pricing</a>
+          </div>
+          <ul class="hero__points">
+            <li>Free daily AI allowance — no card needed</li>
+            <li>Top up from just R30 when you need more</li>
+          </ul>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="chat-card">
+            <div class="chat-card__head">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="chat-card__title">AI Tutor</span>
+            </div>
+            <div class="bubble bubble--me">How do I find the turning point of y = x² − 6x + 5?</div>
+            <div class="bubble bubble--ai">
+              Let's do it step by step.<br />
+              <strong>1.</strong> The axis of symmetry is x = −b ÷ 2a = 6 ÷ 2 = <strong>3</strong>.<br />
+              <strong>2.</strong> Substitute: y = 9 − 18 + 5 = <strong>−4</strong>.<br />
+              So the turning point is <strong>(3 ; −4)</strong>. Want to try one on your own?
+            </div>
+            <div class="chat-card__chips">
+              <span>Explain again</span><span>Give me a practice question</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div>
+          <p class="eyebrow">About us</p>
+          <h2>Built in South Africa, for South African classrooms.</h2>
+        </div>
+        <div class="about__body">
+          <p>
+            Study Acumen grew out of a STEM tutoring programme. We saw the same thing again and
+            again: learners who were capable of much more but couldn't get help at 9pm the night
+            before a test, and tutors spending their evenings marking instead of teaching.
+          </p>
+          <p>
+            So we built one place for both. Learners get patient, step-by-step help aligned to the
+            CAPS curriculum and the way NSC papers are actually marked. Tutors get classes, lessons,
+            tasks and papers in one workspace, with AI doing the first pass on marking so they can
+            spend their time where it matters.
+          </p>
+          <ul class="values">
+            <li><strong>Improvement over marks.</strong> We celebrate progress — 42% to 48% counts.</li>
+            <li><strong>Understanding over answers.</strong> The tutor explains; it doesn't just hand over the solution.</li>
+            <li><strong>Teachers stay in charge.</strong> AI marking is a study aid and a first pass — the tutor has the final say.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learners -->
+    <section class="section section--tint" id="learners">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">For learners</p>
+          <h2>Everything you need between class and the exam hall.</h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">💬</div>
+            <h3>AI Tutor, any time</h3>
+            <p>Ask a question — or snap a photo of your working — and get a clear, step-by-step explanation.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📝</div>
+            <h3>Past-paper practice</h3>
+            <p>Practise real exam-style questions by topic, get marked feedback, and see your weakest topics at a glance.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🧠</div>
+            <h3>Bookwork Cram</h3>
+            <p>Master definitions, formulas, proofs and derivations — learn, recall, rebuild and reproduce them step by step.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📚</div>
+            <h3>Layered lessons</h3>
+            <p>Lessons that start simple and go deeper as you're ready, with AI help built into every layer.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🔬</div>
+            <h3>Test My Theory &amp; Explore It</h3>
+            <p>Say the theory out loud, hear it back, and explore CAPS-linked science simulations.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📈</div>
+            <h3>Track your progress</h3>
+            <p>See your marks, submissions and improvement over time — and know exactly what to study next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutors -->
+    <section class="section" id="tutors">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">For tutors &amp; teachers</p>
+          <h2>Run your classes and spend less time marking.</h2>
+          <p class="lead lead--small">
+            One workspace for everything you set, collect and mark — with AI to help you prepare
+            and give feedback faster.
+          </p>
+          <a class="btn" data-app-link="/register" href="#">Set up your first class</a>
+        </div>
+        <ul class="checklist">
+          <li><strong>Classes &amp; join requests</strong> — invite learners and manage your class lists.</li>
+          <li><strong>Lessons, tasks &amp; drop-tasks</strong> — set work and collect typed or photographed submissions.</li>
+          <li><strong>AI-assisted marking</strong> — a first-pass mark and feedback per question, which you review and adjust.</li>
+          <li><strong>Question paper builder</strong> — assemble practice papers from a bank of exam-style questions.</li>
+          <li><strong>Teacher resource generator</strong> — draft worksheets, notes and explanations in seconds.</li>
+          <li><strong>Time-boxed learning lanes</strong> — guided, timed activities with instant marking.</li>
+          <li><strong>Gradebooks</strong> — every mark for every learner in one place.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section section--tint" id="pricing">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <p class="eyebrow">Pricing &amp; offers</p>
+          <h2>Start free. Only pay if you need more.</h2>
+          <p class="lead lead--small">No subscriptions, no debit orders, no contracts. Credits never auto-renew.</p>
+        </div>
+        <div class="grid grid--3 pricing">
+          <article class="plan">
+            <h3>Free</h3>
+            <p class="plan__price">R0 <span>/ forever</span></p>
+            <p class="plan__desc">Everything you need to get started.</p>
+            <ul>
+              <li>Full access to classes, lessons, practice and Cram</li>
+              <li>Daily AI allowance (150,000 tokens a day)</li>
+              <li>Up to 2 free daily AI top-ups when you run low</li>
+              <li>Learner, tutor and parent accounts</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" data-app-link="/register" href="#">Sign up free</a>
+          </article>
+
+          <article class="plan plan--featured">
+            <p class="plan__badge">Most flexible</p>
+            <h3>AI Credits</h3>
+            <p class="plan__price">From R30 <span>/ once-off</span></p>
+            <p class="plan__desc">Extra AI help for exam season — pay only for what you use.</p>
+            <ul>
+              <li><strong>R30</strong> ≈ one extra full day of AI help</li>
+              <li>Load R30, R50, R100, R200 or any amount</li>
+              <li>R1 = 5,000 AI tokens, used after your free allowance</li>
+              <li>Pay by EFT — no card needed</li>
+            </ul>
+            <a class="btn btn--block" data-app-link="/upgrade" href="#">Load credits</a>
+          </article>
+
+          <article class="plan">
+            <h3>Tutoring groups</h3>
+            <p class="plan__price">Let's talk</p>
+            <p class="plan__desc">For tutoring centres, NGOs and school programmes.</p>
+            <ul>
+              <li>Help getting your tutors and classes set up</li>
+              <li>Credit bundles for AI marking across your classes</li>
+              <li>Pilot programmes for your learners</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="#contact">Get in touch</a>
+          </article>
+        </div>
+        <div class="calc" aria-labelledby="calc-title">
+          <h3 id="calc-title">How far does a top-up go?</h3>
+          <label for="calc-amount">Amount (Rand)</label>
+          <div class="calc__row">
+            <input id="calc-amount" type="range" min="30" max="500" step="10" value="50" />
+            <output id="calc-out" for="calc-amount">R50 → 250,000 tokens ≈ 1.7 extra days of AI help</output>
+          </div>
+          <p class="calc__note">Estimate based on the daily free allowance of 150,000 tokens. Actual usage depends on how long your questions and answers are.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <p class="eyebrow">How it works</p>
+          <h2>Up and running in three steps.</h2>
+        </div>
+        <ol class="steps">
+          <li><span>1</span><h3>Sign up free</h3><p>Create a learner, tutor or parent account with email or Google.</p></li>
+          <li><span>2</span><h3>Join or create a class</h3><p>Learners join their tutor's class; tutors set up classes and invite learners.</p></li>
+          <li><span>3</span><h3>Learn, practise, improve</h3><p>Work through lessons and papers, ask the AI tutor, and watch your progress grow.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--tint" id="faq">
+      <div class="container container--narrow">
+        <div class="section__head section__head--center">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions people ask us.</h2>
+        </div>
+        <details>
+          <summary>Which grades and subjects do you cover?</summary>
+          <p>Grades 10, 11 and 12 Mathematics and Physical Sciences, aligned to the South African CAPS curriculum.</p>
+        </details>
+        <details>
+          <summary>Is it really free?</summary>
+          <p>Yes. Every account gets a free daily AI allowance plus up to two free top-ups a day. You only pay if you want more AI help than that.</p>
+        </details>
+        <details>
+          <summary>How do I pay for credits?</summary>
+          <p>Choose an amount on the Credits page in the app and pay by EFT using the reference shown. Once we've verified the payment, the credits appear in your account. There are no subscriptions or recurring charges.</p>
+        </details>
+        <details>
+          <summary>Can AI marking replace my teacher?</summary>
+          <p>No — and it isn't meant to. AI marking gives a fast first pass and feedback to learn from. Your tutor or teacher reviews it and has the final say.</p>
+        </details>
+        <details>
+          <summary>Do I need to install anything?</summary>
+          <p>No. Study Acumen runs in your browser on phone, tablet or computer, and can be added to your home screen like an app.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA / contact -->
+    <section class="section cta" id="contact">
+      <div class="container cta__inner">
+        <div>
+          <h2>Ready to study smarter?</h2>
+          <p>Create a free account in under a minute — or get in touch about tutoring groups and pilots.</p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--light" data-app-link="/register" href="#">Create a free account</a>
+          <a class="btn btn--outline-light" data-contact-link href="#">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="brand brand--footer">
+        <img src="assets/logo.svg" alt="" width="48" height="24" />
+        <span>Study Acumen</span>
+      </div>
+      <nav aria-label="Footer">
+        <a data-app-link="/login" href="#">Log in</a>
+        <a data-app-link="/register" href="#">Sign up</a>
+        <a data-app-link="/privacy" href="#">Privacy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="site-footer__copy">© <span id="year">2026</span> Study Acumen. Made in South Africa.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

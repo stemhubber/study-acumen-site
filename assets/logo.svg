@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="250" viewBox="0 0 500 250" role="img" aria-label="Study Acumen">
+  <defs>
+    <linearGradient id="edge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="facetLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#DBEAFE" stop-opacity="0.55" />
+    </linearGradient>
+    <linearGradient id="facetDark" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#EFF6FF" stop-opacity="0.95" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(50, 0)">
+    <g>
+      <polygon points="200,20 130,45 165,90" fill="url(#facetLight)" />
+      <polygon points="130,45 70,85 140,110" fill="url(#facetDark)" />
+      <polygon points="130,45 140,110 165,90" fill="url(#facetLight)" />
+      <polygon points="200,20 270,45 235,90" fill="url(#facetDark)" />
+      <polygon points="270,45 330,85 260,110" fill="url(#facetLight)" />
+      <polygon points="270,45 260,110 235,90" fill="url(#facetDark)" />
+      <polygon points="200,20 165,90 200,145" fill="url(#facetDark)" />
+      <polygon points="200,20 235,90 200,145" fill="url(#facetLight)" />
+      <polygon points="70,85 40,140 115,155" fill="url(#facetLight)" />
+      <polygon points="70,85 115,155 140,110" fill="url(#facetDark)" />
+      <polygon points="330,85 360,140 285,155" fill="url(#facetDark)" />
+      <polygon points="330,85 285,155 260,110" fill="url(#facetLight)" />
+      <polygon points="140,110 115,155 200,145" fill="url(#facetLight)" />
+      <polygon points="260,110 285,155 200,145" fill="url(#facetDark)" />
+      <polygon points="115,155 185,160 200,145" fill="url(#facetDark)" />
+      <polygon points="285,155 215,160 200,145" fill="url(#facetLight)" />
+      <polygon points="185,160 200,225 200,145" fill="url(#facetLight)" />
+      <polygon points="215,160 200,225 200,145" fill="url(#facetDark)" />
+    </g>
+
+    <ellipse cx="185" cy="50" rx="22" ry="10" fill="#FFFFFF" opacity="0.55" />
+
+    <g fill="none" stroke="url(#edge)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 200,20 L 130,45 L 70,85 L 40,140 L 115,155 L 200,225 L 285,155 L 360,140 L 330,85 L 270,45 Z" />
+      <path d="M 200,20 L 165,90 L 200,145 L 235,90 Z" />
+      <path d="M 200,20 L 200,145" />
+      <path d="M 130,45 L 165,90 L 140,110 L 70,85" />
+      <path d="M 270,45 L 235,90 L 260,110 L 330,85" />
+      <path d="M 140,110 L 115,155 L 40,140" />
+      <path d="M 260,110 L 285,155 L 360,140" />
+      <path d="M 115,155 L 200,145 L 285,155" />
+    </g>
+
+    <g fill="#475569">
+      <circle cx="200" cy="20" r="3" />
+      <circle cx="130" cy="45" r="3" />
+      <circle cx="70" cy="85" r="2.5" />
+      <circle cx="40" cy="140" r="2.5" />
+      <circle cx="270" cy="45" r="2.5" />
+      <circle cx="330" cy="85" r="3" />
+      <circle cx="360" cy="140" r="2.5" />
+      <circle cx="200" cy="145" r="4" fill="#2C5578" />
+      <circle cx="200" cy="225" r="4" fill="#3B82F6" />
+    </g>
+  </g>
+</svg>
