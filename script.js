@@ -18,6 +18,37 @@
   each("[data-phone-text]", function (el) { el.textContent = cfg.phoneDisplay || cfg.phone; });
   each("[data-email-text]", function (el) { el.textContent = cfg.email; });
 
+  // ---- Audience (learner / tutor) ----
+  var root = document.documentElement;
+  function syncSectionLinks() {
+    var a = root.getAttribute("data-audience");
+    each("[data-section]", function (link) {
+      link.href = a ? "#" + link.getAttribute("data-section") + "-" + a : "#pick";
+    });
+  }
+  function setAudience(a, scroll) {
+    root.setAttribute("data-audience", a);
+    try { localStorage.setItem("sa-audience", a); } catch (e) {}
+    try {
+      var url = new URL(location.href);
+      url.searchParams.set("for", a);
+      url.hash = "";
+      history.replaceState(null, "", url);
+    } catch (e) {}
+    syncSectionLinks();
+    if (scroll) {
+      var target = document.getElementById("features-" + a);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+  each("[data-choose]", function (btn) {
+    btn.addEventListener("click", function () {
+      var inSwitch = !!btn.closest(".switch");
+      setAudience(btn.getAttribute("data-choose"), !inSwitch);
+    });
+  });
+  syncSectionLinks();
+
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
@@ -62,7 +93,7 @@
     var tokens = rand * 5000;
     var days = Math.round((tokens / 150000) * 10) / 10;
     out.textContent = "R" + rand + " → " + tokens.toLocaleString("en-ZA") + " tokens ≈ " +
-      days + " extra day" + (days === 1 ? "" : "s") + " of AI help";
+      days + " extra day" + (days === 1 ? "" : "s") + " of AI use";
   }
   range.addEventListener("input", render);
   render();

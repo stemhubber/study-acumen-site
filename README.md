@@ -5,6 +5,18 @@ Maths and Physical Sciences for Grade 10–12 learners, tutors and teachers.
 
 **Live:** https://stemhubber.github.io/study-acumen-site/
 
+## Shareable links
+
+Visitors choose "I'm a learner" or "I'm a tutor or teacher" and the page shows only what's
+relevant to them (they can switch any time from the bar under the header). To skip the
+question, send a link that picks the view for them:
+
+- Learners: https://stemhubber.github.io/study-acumen-site/?for=learner
+- Tutors & teachers: https://stemhubber.github.io/study-acumen-site/?for=tutor
+
+In `index.html`, `data-for="learner"` / `"tutor"` marks content for one audience,
+`data-for="any"` shows after either choice, and `data-for="none"` only before a choice.
+
 ## Editing
 
 Plain HTML/CSS/JS, no build step:

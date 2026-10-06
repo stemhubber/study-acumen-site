@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Study Acumen | Premium STEM Learning for Grades 10–12</title>
-  <meta name="description" content="Study Acumen is a CAPS-aligned Maths and Physical Sciences platform for South African Grade 10–12 learners, tutors and teachers: an AI tutor, past-paper practice, a full marking workspace with AI marking, career guidance and more." />
+  <meta name="description" content="Study Acumen is a CAPS-aligned Maths and Physical Sciences platform for South African Grade 10–12 learners, tutors and teachers. Choose learner or tutor to see exactly what you can do." />
   <meta property="og:title" content="Study Acumen | Premium STEM Learning for Grades 10–12" />
-  <meta property="og:description" content="AI tutoring, past-paper practice, AI-assisted marking and career guidance for South African Maths and Physical Sciences." />
+  <meta property="og:description" content="AI tutoring, past-paper practice, lesson videos, a full marking workspace and career guidance for South African Maths and Physical Sciences." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/logo.svg" />
   <meta name="theme-color" content="#0b1020" />
@@ -16,6 +16,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Pick the audience before first paint so the page never flashes the wrong view.
+    (function () {
+      var d = document.documentElement, a = null;
+      d.classList.add("js");
+      try {
+        var q = new URLSearchParams(location.search).get("for");
+        if (q === "learner" || q === "tutor") a = q;
+        else a = localStorage.getItem("sa-audience");
+      } catch (e) {}
+      if (a === "learner" || a === "tutor") d.setAttribute("data-audience", a);
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,13 +45,23 @@
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <a href="#about">About</a>
-        <a href="#learners">Learners</a>
-        <a href="#tutors">Tutors</a>
-        <a href="#career">Career</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#features" data-section="features">What you can do</a>
+        <a href="#journey" data-section="journey" data-for="any">How it works</a>
+        <a href="#career" data-for="learner">Career</a>
+        <a href="#pricing" data-for="any">Pricing</a>
         <a href="#contact">Contact</a>
         <a class="btn btn--gold btn--small" data-app-link="/register" href="#">Start free</a>
       </nav>
+    </div>
+    <!-- Audience switch: appears once a visitor has chosen -->
+    <div class="audience-bar" role="group" aria-label="Show the site for">
+      <div class="container audience-bar__inner">
+        <span class="audience-bar__label">Viewing as</span>
+        <div class="switch">
+          <button type="button" data-choose="learner">Learners</button>
+          <button type="button" data-choose="tutor">Tutors &amp; teachers</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -49,18 +72,47 @@
       <div class="container hero__inner">
         <div class="hero__copy reveal">
           <p class="pill"><span class="pill__dot"></span> CAPS-aligned · Grades 10–12 · Maths &amp; Physical Sciences</p>
-          <h1>The complete STEM studio for <em>learners</em> and the <em>tutors</em> who teach them.</h1>
-          <p class="lead">
-            An AI tutor that explains step by step. Past papers marked with real feedback.
-            A marking workspace that lets tutors mark a whole class in a fraction of the time.
-            Plus career guidance for life after matric. All in one app.
+
+          <h1 data-for="none">One app for <em>learners</em> and the <em>tutors</em> who teach them.</h1>
+          <h1 data-for="learner">Your personal <em>STEM tutor</em>, in your pocket.</h1>
+          <h1 data-for="tutor">Teach more. <em>Mark less.</em></h1>
+
+          <p class="lead" data-for="none">
+            AI tutoring, past papers, lesson videos, a full marking workspace and career guidance,
+            built for South African classrooms. Tell us who you are and we'll show you exactly what
+            you can do.
           </p>
-          <div class="hero__actions">
-            <a class="btn btn--gold" data-app-link="/register" href="#">Create a free account</a>
-            <a class="btn btn--glass" data-whatsapp-link href="#">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>
-              Chat on WhatsApp
+          <p class="lead" data-for="learner">
+            Step-by-step help from an AI tutor any time of day, past papers marked with real feedback,
+            your tutor's lesson videos, and tools to plan life after matric. Free to start.
+          </p>
+          <p class="lead" data-for="tutor">
+            Run your classes, share lessons and videos, collect work (even from WhatsApp) and mark a
+            whole class on screen with AI doing the first pass. You stay in charge of every mark.
+          </p>
+
+          <!-- The chooser -->
+          <div class="chooser" data-for="none" id="choose" role="group" aria-label="Who are you?">
+            <p class="chooser__q">Who are you?</p>
+            <div class="chooser__options">
+              <button type="button" class="choice" data-choose="learner">
+                <span class="choice__icon" aria-hidden="true">🎓</span>
+                <span class="choice__text"><b>I'm a learner</b><small>Show me how it helps me study</small></span>
+                <span class="choice__arrow" aria-hidden="true">→</span>
+              </button>
+              <button type="button" class="choice" data-choose="tutor">
+                <span class="choice__icon" aria-hidden="true">🧑‍🏫</span>
+                <span class="choice__text"><b>I'm a tutor or teacher</b><small>Show me how it saves me time</small></span>
+                <span class="choice__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero__actions" data-for="any">
+            <a class="btn btn--gold" data-app-link="/register" href="#">
+              <span data-for="learner">Create my free account</span><span data-for="tutor">Set up my first class, free</span>
             </a>
+            <a class="btn btn--glass" href="#features" data-section="features">See what I can do ↓</a>
           </div>
           <ul class="hero__trust">
             <li>Free to start</li>
@@ -91,7 +143,7 @@
           </div>
           <div class="mock mock--ring">
             <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" class="ring-bg"/><circle cx="18" cy="18" r="15.9" class="ring-fg" stroke-dasharray="72 100"/></svg>
-            <div><b>+14%</b><small>Functions this month</small></div>
+            <div><b>Lesson video</b><small>Resume at 7:42</small></div>
           </div>
         </div>
       </div>
@@ -99,14 +151,225 @@
       <div class="container">
         <ul class="facts reveal">
           <li><b>Grades 10–12</b><span>Maths &amp; Physical Sciences</span></li>
-          <li><b>4 audiences</b><span>Learners, tutors, teachers, parents</span></li>
+          <li><b>Learners &amp; tutors</b><span>Each with their own tools</span></li>
           <li><b>30+ tools</b><span>From AI tutoring to career planning</span></li>
           <li><b>From R0</b><span>Free daily AI allowance</span></li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ ABOUT ============ -->
+    <!-- Prompt shown until a visitor chooses -->
+    <section class="section section--ivory pick-prompt" id="pick" data-for="none">
+      <div class="container container--narrow center-text reveal">
+        <p class="eyebrow">Made for you</p>
+        <h2>Learners and tutors use Study Acumen very differently.</h2>
+        <p class="lead lead--dark">Choose one and the whole page changes to show only what matters to you. You can switch at any time.</p>
+        <div class="chooser__options chooser__options--light">
+          <button type="button" class="choice choice--light" data-choose="learner">
+            <span class="choice__icon" aria-hidden="true">🎓</span>
+            <span class="choice__text"><b>I'm a learner</b><small>AI tutor, practice, videos, careers</small></span>
+            <span class="choice__arrow" aria-hidden="true">→</span>
+          </button>
+          <button type="button" class="choice choice--light" data-choose="tutor">
+            <span class="choice__icon" aria-hidden="true">🧑‍🏫</span>
+            <span class="choice__text"><b>I'm a tutor or teacher</b><small>Classes, marking, papers, videos</small></span>
+            <span class="choice__arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ================  LEARNER VIEW  ===================== -->
+    <!-- ===================================================== -->
+
+    <section class="section section--ivory" id="features-learner" data-for="learner">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">What you can do</p>
+          <h2>Everything between class and the exam hall.</h2>
+          <p class="lead lead--dark">Study, practise, get help and track your progress, on your phone, at your own pace.</p>
+        </div>
+
+        <div class="spotlight reveal">
+          <div class="spotlight__copy">
+            <p class="tag">Your AI tutor</p>
+            <h3>StudyAcumen AI: help whenever you're stuck.</h3>
+            <p>Ask in your own words, snap a photo of your working, or say "take me to past papers" and it takes you there. Sessions go step by step and stay on your topic, so you learn the method, not just the answer.</p>
+            <ul class="ticks">
+              <li>Step-by-step explanations in CAPS language</li>
+              <li>Photo questions and photos of your working</li>
+              <li>Answers read aloud, and a Stop button when you've got it</li>
+              <li>App not working? Help mode tells you exactly what to do</li>
+            </ul>
+          </div>
+          <div class="spotlight__art spotlight__art--blue" aria-hidden="true">
+            <div class="mini-chat">
+              <div class="bubble bubble--me">Why is the normal force less on a slope?</div>
+              <div class="bubble bubble--ai">Only part of the weight pushes into the slope: F<sub>N</sub> = mg cos θ. As θ grows, cos θ gets smaller…</div>
+              <div class="chips"><span>Explain again</span><span>Practice question</span><span>Take me to Forces</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features">
+          <article class="feature reveal"><div class="feature__icon">🎬</div><h3>Lesson videos</h3><p>Watch your tutor's lesson videos in short parts, and pick up exactly where you stopped.</p></article>
+          <article class="feature reveal"><div class="feature__icon">📝</div><h3>Practice Arena</h3><p>Past-paper questions by topic and paper. Photograph your answer and get marked feedback.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🎯</div><h3>Exam Me</h3><p>Prepare for an exam problem, then attempt it under exam conditions and see how you did.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🧠</div><h3>Cramming Tutor</h3><p>Definitions, formulas, proofs and derivations. Proofs come back for review at the right time so they stick.</p></article>
+          <article class="feature reveal"><div class="feature__icon">✅</div><h3>Test My Knowledge</h3><p>Quick quizzes to check a topic before you move on.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🎙️</div><h3>Test My Theory</h3><p>Hear It and Voice It: listen to the theory, then say it in your own words and get feedback.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🔬</div><h3>Explore It</h3><p>Interactive science simulations linked to CAPS topics. See the physics happen.</p></article>
+          <article class="feature reveal"><div class="feature__icon">📚</div><h3>Study &amp; Textbooks</h3><p>CAPS-aligned study material and approved textbooks, organised by grade and topic.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🛤️</div><h3>Learning paths &amp; lanes</h3><p>Guided paths through a topic, and time-boxed lanes for class work at your own pace.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🧰</div><h3>Smart Tools</h3><p>Study planner, study-plan generator, note analyser, question scanner and AI insights.</p></article>
+          <article class="feature reveal"><div class="feature__icon">📈</div><h3>My Progress</h3><p>Marks, submissions and your weakest topic at a glance, so you always know what to study next.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🔍</div><h3>Find anything fast</h3><p>Search any feature by name or by what it does, plus an inbox and notifications for new work and marks.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey-learner" data-for="learner">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="eyebrow">How it works for you</p>
+          <h2>A typical week with Study Acumen.</h2>
+        </div>
+        <ol class="journey">
+          <li class="reveal"><span>1</span><h3>Join your tutor's class</h3><p>Sign up free and join with your tutor's class. Their lessons and tasks appear for you.</p></li>
+          <li class="reveal"><span>2</span><h3>Learn the topic</h3><p>Watch the lesson video, read the notes, and ask the AI whenever something doesn't click.</p></li>
+          <li class="reveal"><span>3</span><h3>Practise &amp; cram</h3><p>Past-paper questions, quizzes and Cram cards until the method is second nature.</p></li>
+          <li class="reveal"><span>4</span><h3>Hand in your work</h3><p>Type it or photograph it. Your marks and your tutor's comments come back right on your script.</p></li>
+          <li class="reveal"><span>5</span><h3>Fix your weakest topic</h3><p>My Progress shows what to work on next, so every week you get a little stronger.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--ivory" id="career" data-for="learner">
+      <div class="container career">
+        <div class="reveal">
+          <p class="eyebrow">Career Checkpoint</p>
+          <h2>Plan life after matric, not just the next test.</h2>
+          <p class="lead lead--dark">Career guidance and readiness tools, free, in the same app you study with.</p>
+          <a class="btn btn--ghost" data-app-link="/register" href="#">Explore careers</a>
+        </div>
+        <ul class="career__grid reveal">
+          <li><b>Career assessment</b><span>Find paths that fit your strengths and interests</span></li>
+          <li><b>APS calculator</b><span>Work out your Admission Point Score</span></li>
+          <li><b>NBT info</b><span>What the National Benchmark Tests are and how to prepare</span></li>
+          <li><b>NSFAS &amp; funding</b><span>How to fund your studies</span></li>
+          <li><b>College vs varsity</b><span>Which route suits you</span></li>
+          <li><b>Degree explainer</b><span>Diplomas, degrees and what they lead to</span></li>
+          <li><b>University &amp; college links</b><span>Go straight to application pages</span></li>
+          <li><b>Tutoring schedule</b><span>See when your sessions are</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--dark other-side" data-for="learner">
+      <div class="container other-side__inner reveal">
+        <div>
+          <p class="eyebrow eyebrow--gold">Behind the scenes</p>
+          <h2>Your tutor has their own toolkit.</h2>
+          <p class="lead">They mark your work on screen with AI help and send it back with ticks and comments on your actual script, often much faster than paper. Is your tutor or teacher not on Study Acumen yet? Send them this page.</p>
+        </div>
+        <button type="button" class="btn btn--glass" data-choose="tutor">See the tutor side →</button>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- =================  TUTOR VIEW  ====================== -->
+    <!-- ===================================================== -->
+
+    <section class="section section--dark" id="features-tutor" data-for="tutor">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow eyebrow--gold">What you can do</p>
+          <h2>Mark a whole class in a fraction of the time.</h2>
+          <p class="lead">Set work, collect it, and mark it on screen with AI help, then give every learner detailed feedback.</p>
+        </div>
+
+        <div class="spotlight spotlight--dark reveal">
+          <div class="spotlight__copy">
+            <p class="tag tag--gold">The Marking Workspace</p>
+            <h3>Open a script. The AI's marks are already on it.</h3>
+            <p>See the learner's script next to the question paper and memo. Review the AI's first pass, adjust with pen and stamps, then release. Now available on every submission.</p>
+            <ul class="ticks ticks--gold">
+              <li>Pen, stamps and ink right on the learner's script</li>
+              <li>Paper and memo side by side, grouped into question sections</li>
+              <li>"Mark all with AI", batch release and "mark next ungraded"</li>
+              <li>Second-marker moderation: send to a colleague to approve or return</li>
+            </ul>
+          </div>
+          <div class="spotlight__art spotlight__art--paper" aria-hidden="true">
+            <div class="paper">
+              <div class="paper__head"><b>Thabo M.</b><span>Task 4 · Momentum</span></div>
+              <p>4.1 p = mv <i class="tick">✓</i></p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;= (2)(3) = 6 kg·m·s⁻¹ <i class="tick">✓</i></p>
+              <p>4.2 Δp = F Δt <i class="tick">✓</i></p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;F = 6 ÷ 0,2 = 30 N <i class="cross">✗</i></p>
+              <p class="note">Direction missing (−1)</p>
+              <span class="stamp stamp--big">7 / 8</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="features features--dark">
+          <article class="feature reveal"><div class="feature__icon">🎬</div><h3>Lesson videos with stats</h3><p>Add a video to any lesson. See who started, who finished, watch time and where learners dropped off.</p></article>
+          <article class="feature reveal"><div class="feature__icon">💬</div><h3>WhatsApp import</h3><p>Learners sent their work on WhatsApp? Import the chat export and the photos land in the right submissions.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🏫</div><h3>Classes &amp; people</h3><p>Classes, join requests, class updates and resources, plus learners' birthdays so you never miss one.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🗂️</div><h3>Lessons, tasks &amp; drop-tasks</h3><p>Set work, collect typed or photographed submissions, and log submissions on a learner's behalf.</p></article>
+          <article class="feature reveal"><div class="feature__icon">📄</div><h3>Paper builder &amp; My Papers</h3><p>Build papers from a question bank, attach memo packs, and publish a paper as a task in one click.</p></article>
+          <article class="feature reveal"><div class="feature__icon">✨</div><h3>Teacher Hub</h3><p>Classes, a planner, AI resource creation and resource search, all in one place.</p></article>
+          <article class="feature reveal"><div class="feature__icon">🔎</div><h3>Question bank &amp; scanner</h3><p>Find exam-style questions, scan questions from paper, and generate practice papers.</p></article>
+          <article class="feature reveal"><div class="feature__icon">⏱️</div><h3>Temporal lanes</h3><p>Guided, timed activities for your class with instant AI marking.</p></article>
+          <article class="feature reveal"><div class="feature__icon">📊</div><h3>Gradebooks</h3><p>Every mark for every learner in one place, ready to review and report.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey-tutor" data-for="tutor">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="eyebrow">How it works for you</p>
+          <h2>From lesson to marked script, in one place.</h2>
+        </div>
+        <ol class="journey">
+          <li class="reveal"><span>1</span><h3>Set up your class</h3><p>Create a class and invite learners. Approve join requests in a tap.</p></li>
+          <li class="reveal"><span>2</span><h3>Teach</h3><p>Share lessons, notes and videos. Draft resources and papers with the Teacher Hub.</p></li>
+          <li class="reveal"><span>3</span><h3>Collect work</h3><p>Tasks, drop-tasks, or import what learners sent on WhatsApp.</p></li>
+          <li class="reveal"><span>4</span><h3>Mark with AI</h3><p>AI does the first pass. You review, adjust and, if needed, send for moderation.</p></li>
+          <li class="reveal"><span>5</span><h3>Release &amp; track</h3><p>Release marks in a batch and follow progress in gradebooks and video stats.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--ivory" data-for="tutor">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Included for your learners</p>
+          <h2>Your learners get their own toolkit, at no extra effort.</h2>
+          <p class="lead lead--dark">You don't have to set any of this up. Once learners join your class, they also have:</p>
+        </div>
+        <ul class="chiplist reveal">
+          <li>🤖 AI tutor, any time</li>
+          <li>📝 Past-paper Practice Arena</li>
+          <li>🎯 Exam Me</li>
+          <li>🧠 Cramming Tutor &amp; proofs</li>
+          <li>🎙️ Test My Theory</li>
+          <li>🔬 Explore It simulations</li>
+          <li>📚 Study material &amp; textbooks</li>
+          <li>🧭 Career Checkpoint</li>
+          <li>📈 Progress tracking</li>
+        </ul>
+        <p class="reveal"><button type="button" class="linkbtn" data-choose="learner">See the learner side in detail →</button></p>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- ================  SHARED SECTIONS  ================== -->
+    <!-- ===================================================== -->
+
     <section class="section" id="about">
       <div class="container about">
         <div class="reveal">
@@ -135,126 +398,7 @@
       </div>
     </section>
 
-    <!-- ============ LEARNERS ============ -->
-    <section class="section section--ivory" id="learners">
-      <div class="container">
-        <div class="section__head reveal">
-          <p class="eyebrow">For learners</p>
-          <h2>Everything between class and the exam hall.</h2>
-          <p class="lead lead--dark">Study, practise, get help and track your progress, on your phone, at your own pace.</p>
-        </div>
-
-        <div class="spotlight reveal">
-          <div class="spotlight__copy">
-            <p class="tag">Flagship</p>
-            <h3>StudyAcumen AI: your personal tutor, always on.</h3>
-            <p>One AI assistant across the whole app. Ask a question in your own words, snap a photo of your working, or say "take me to past papers" and it goes there. Tutor sessions are layered, step by step, and stay on your topic.</p>
-            <ul class="ticks">
-              <li>Step-by-step explanations in CAPS language</li>
-              <li>Photo questions and working</li>
-              <li>Read-aloud answers with text-to-speech</li>
-              <li>"Explain it yourself" checks so understanding sticks</li>
-            </ul>
-          </div>
-          <div class="spotlight__art spotlight__art--blue" aria-hidden="true">
-            <div class="mini-chat">
-              <div class="bubble bubble--me">Why is the normal force less on a slope?</div>
-              <div class="bubble bubble--ai">Only part of the weight pushes into the slope: F<sub>N</sub> = mg cos θ. As θ grows, cos θ gets smaller…</div>
-              <div class="chips"><span>Explain again</span><span>Practice question</span><span>Take me to Forces</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="features">
-          <article class="feature reveal"><div class="feature__icon">📝</div><h3>Practice Arena</h3><p>Past-paper questions by topic and paper. Photograph your answer and get marked feedback.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🎯</div><h3>Exam Me</h3><p>Prepare for an exam problem, then attempt it under exam conditions and see how you did.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🧠</div><h3>Cramming Tutor</h3><p>Flashcards for definitions and formulas, plus Bookwork Cram for proofs and derivations: learn, recall, rebuild, reproduce.</p></article>
-          <article class="feature reveal"><div class="feature__icon">✅</div><h3>Test My Knowledge</h3><p>Quick quizzes to check a topic before you move on.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🎙️</div><h3>Test My Theory</h3><p>Hear It and Voice It: listen to the theory, then say it in your own words and get feedback.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🔬</div><h3>Explore It</h3><p>Interactive science simulations linked to CAPS topics. See the physics happen.</p></article>
-          <article class="feature reveal"><div class="feature__icon">📚</div><h3>Study &amp; Textbooks</h3><p>CAPS-aligned study material and approved textbooks, organised by grade and topic.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🛤️</div><h3>Learning paths &amp; lanes</h3><p>Guided paths through a topic, and time-boxed lanes for class work at your own pace.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🧰</div><h3>Smart Tools</h3><p>Study planner, study-plan generator, note analyser, question scanner and AI insights.</p></article>
-          <article class="feature reveal"><div class="feature__icon">📈</div><h3>My Progress</h3><p>Marks, submissions and your weakest topic at a glance, so you always know what to study next.</p></article>
-          <article class="feature reveal"><div class="feature__icon">✉️</div><h3>Inbox &amp; notifications</h3><p>Message your tutor and get push notifications when new work or marks arrive.</p></article>
-          <article class="feature reveal"><div class="feature__icon">📤</div><h3>Submit work easily</h3><p>Hand in tasks by typing or by photographing your written work.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TUTORS ============ -->
-    <section class="section section--dark" id="tutors">
-      <div class="container">
-        <div class="section__head reveal">
-          <p class="eyebrow eyebrow--gold">For tutors &amp; teachers</p>
-          <h2>Mark a whole class in a fraction of the time.</h2>
-          <p class="lead">Set work, collect it, and mark it on screen with AI help, then give every learner detailed feedback.</p>
-        </div>
-
-        <div class="spotlight spotlight--dark reveal">
-          <div class="spotlight__copy">
-            <p class="tag tag--gold">Flagship</p>
-            <h3>The Marking Workspace</h3>
-            <p>Open a learner's script next to the question paper and memo. The AI's marks and comments are already on the script, so you review, adjust with pen and stamps, and release.</p>
-            <ul class="ticks ticks--gold">
-              <li>Pen, stamps and ink right on the learner's script</li>
-              <li>Question paper and memo side by side, with jump-to-memo</li>
-              <li>"Mark all with AI" for a whole class at once</li>
-              <li>Batch release and "mark next ungraded"</li>
-            </ul>
-          </div>
-          <div class="spotlight__art spotlight__art--paper" aria-hidden="true">
-            <div class="paper">
-              <div class="paper__head"><b>Thabo M.</b><span>Task 4 · Momentum</span></div>
-              <p>4.1 p = mv <i class="tick">✓</i></p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;= (2)(3) = 6 kg·m·s⁻¹ <i class="tick">✓</i></p>
-              <p>4.2 Δp = F Δt <i class="tick">✓</i></p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;F = 6 ÷ 0,2 = 30 N <i class="cross">✗</i></p>
-              <p class="note">Direction missing (−1)</p>
-              <span class="stamp stamp--big">7 / 8</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="features features--dark">
-          <article class="feature reveal"><div class="feature__icon">🤖</div><h3>AI-assisted marking</h3><p>A first-pass mark and feedback for every question, shown on the script. You stay in control.</p></article>
-          <article class="feature reveal"><div class="feature__icon">💬</div><h3>WhatsApp import</h3><p>Learners sent their work on WhatsApp? Import the chat export and the photos land in the right submissions.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🏫</div><h3>Classes &amp; people</h3><p>Classes, join requests, class updates and resources, plus learners' birthdays so you never miss one.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🗂️</div><h3>Lessons, tasks &amp; drop-tasks</h3><p>Set work, collect typed or photographed submissions, and log submissions on a learner's behalf.</p></article>
-          <article class="feature reveal"><div class="feature__icon">📄</div><h3>Paper builder &amp; My Papers</h3><p>Build papers from a question bank, attach memo packs, and publish a paper as a task in one click.</p></article>
-          <article class="feature reveal"><div class="feature__icon">✨</div><h3>Teacher Hub</h3><p>Classes, a planner, AI resource creation and resource search, all in one place.</p></article>
-          <article class="feature reveal"><div class="feature__icon">🔎</div><h3>Question bank &amp; scanner</h3><p>Find exam-style questions, scan questions from paper, and generate practice papers.</p></article>
-          <article class="feature reveal"><div class="feature__icon">⏱️</div><h3>Temporal lanes</h3><p>Guided, timed activities for your class with instant AI marking.</p></article>
-          <article class="feature reveal"><div class="feature__icon">📊</div><h3>Gradebooks</h3><p>Every mark for every learner in one place, ready to review and report.</p></article>
-        </div>
-        <div class="center reveal"><a class="btn btn--gold" data-app-link="/register" href="#">Set up your first class, free</a></div>
-      </div>
-    </section>
-
-    <!-- ============ CAREER ============ -->
-    <section class="section" id="career">
-      <div class="container career">
-        <div class="reveal">
-          <p class="eyebrow">Career Checkpoint</p>
-          <h2>Plan life after matric, not just the next test.</h2>
-          <p class="lead lead--dark">Career guidance and readiness tools in the same app learners already use to study, and they're free.</p>
-          <a class="btn btn--ghost" data-app-link="/register" href="#">Explore careers</a>
-        </div>
-        <ul class="career__grid reveal">
-          <li><b>Career assessment</b><span>Find paths that fit your strengths and interests</span></li>
-          <li><b>APS calculator</b><span>Work out your Admission Point Score</span></li>
-          <li><b>NBT info</b><span>What the National Benchmark Tests are and how to prepare</span></li>
-          <li><b>NSFAS &amp; funding</b><span>How to fund your studies</span></li>
-          <li><b>College vs varsity</b><span>Which route suits you</span></li>
-          <li><b>Degree explainer</b><span>Diplomas, degrees and what they lead to</span></li>
-          <li><b>University &amp; college links</b><span>Go straight to application pages</span></li>
-          <li><b>Tutoring schedule</b><span>See when your sessions are</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ PRICING ============ -->
-    <section class="section section--ivory" id="pricing">
+    <section class="section section--ivory" id="pricing" data-for="any">
       <div class="container">
         <div class="section__head section__head--center reveal">
           <p class="eyebrow">Pricing &amp; offers</p>
@@ -265,12 +409,13 @@
           <article class="plan reveal">
             <h3>Free</h3>
             <p class="plan__price">R0 <span>forever</span></p>
-            <p class="plan__desc">Everything you need to get started.</p>
+            <p class="plan__desc" data-for="learner">Everything you need to study.</p>
+            <p class="plan__desc" data-for="tutor">Everything you need to run your classes.</p>
             <ul>
-              <li>All learner and tutor features</li>
+              <li data-for="learner">AI tutor, practice, videos, Cram and careers</li>
+              <li data-for="tutor">Classes, lessons, videos, papers and the Marking Workspace</li>
               <li>Daily AI allowance (150,000 tokens)</li>
               <li>Up to 2 free AI top-ups a day</li>
-              <li>Learner, tutor and parent accounts</li>
             </ul>
             <a class="btn btn--ghost btn--block" data-app-link="/register" href="#">Sign up free</a>
           </article>
@@ -279,9 +424,10 @@
             <p class="plan__badge">Most flexible</p>
             <h3>AI Credits</h3>
             <p class="plan__price">From R30 <span>once-off</span></p>
-            <p class="plan__desc">Extra AI help for exam season. Pay only for what you use.</p>
+            <p class="plan__desc" data-for="learner">Extra AI help for exam season. Pay only for what you use.</p>
+            <p class="plan__desc" data-for="tutor">Extra AI for marking big classes. Auto-marking uses your allowance, not your learners'.</p>
             <ul>
-              <li><b>R30</b> ≈ one extra full day of AI help</li>
+              <li><b>R30</b> ≈ one extra full day of AI use</li>
               <li>Load R30, R50, R100, R200 or any amount</li>
               <li>R1 = 5,000 AI tokens, used after your free allowance</li>
               <li>Pay by EFT, no card needed</li>
@@ -289,7 +435,7 @@
             <a class="btn btn--gold btn--block" data-app-link="/upgrade" href="#">Load credits</a>
           </article>
 
-          <article class="plan reveal">
+          <article class="plan reveal" data-for="tutor">
             <h3>Tutoring groups</h3>
             <p class="plan__price">Let's talk</p>
             <p class="plan__desc">For tutoring centres, NGOs and school programmes.</p>
@@ -309,51 +455,39 @@
           </div>
           <div class="calc__row">
             <input id="calc-amount" type="range" min="30" max="500" step="10" value="50" aria-labelledby="calc-title" />
-            <output id="calc-out" for="calc-amount">R50 → 250,000 tokens ≈ 1.7 extra days of AI help</output>
+            <output id="calc-out" for="calc-amount">R50 → 250,000 tokens ≈ 1.7 extra days of AI use</output>
           </div>
-          <p class="calc__note">Based on the free daily allowance of 150,000 tokens. Actual use depends on how long your questions and answers are.</p>
+          <p class="calc__note">Based on the free daily allowance of 150,000 tokens. Actual use depends on how long the questions, answers or scripts are.</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ HOW ============ -->
-    <section class="section" id="how">
-      <div class="container">
-        <div class="section__head section__head--center reveal">
-          <p class="eyebrow">How it works</p>
-          <h2>Up and running in three steps.</h2>
-        </div>
-        <ol class="steps">
-          <li class="reveal"><span>1</span><h3>Sign up free</h3><p>Create a learner, tutor or parent account with email or Google. No app store needed.</p></li>
-          <li class="reveal"><span>2</span><h3>Join or create a class</h3><p>Learners join their tutor's class. Tutors set up classes and invite learners.</p></li>
-          <li class="reveal"><span>3</span><h3>Learn, practise, improve</h3><p>Work through lessons and papers, ask the AI, get marked, and watch your progress grow.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="section section--ivory" id="faq">
+    <section class="section" id="faq" data-for="any">
       <div class="container container--narrow">
         <div class="section__head section__head--center reveal">
           <p class="eyebrow">FAQ</p>
           <h2>Questions people ask us.</h2>
         </div>
         <details class="reveal"><summary>Which grades and subjects do you cover?</summary><p>Grades 10, 11 and 12 Mathematics and Physical Sciences, aligned to the South African CAPS curriculum.</p></details>
-        <details class="reveal"><summary>Is it really free?</summary><p>Yes. Every account gets a free daily AI allowance plus up to two free top-ups a day. You only pay if you want more AI help than that.</p></details>
+        <details class="reveal"><summary>Is it really free?</summary><p>Yes. Every account gets a free daily AI allowance plus up to two free top-ups a day. You only pay if you want more AI than that.</p></details>
+        <details class="reveal" data-for="learner"><summary>Do I need a tutor to use it?</summary><p>No. The AI tutor, Practice Arena, Cramming Tutor, Test My Theory, Explore It and Career Checkpoint all work on your own. Joining a tutor's class adds their lessons, videos and marked tasks.</p></details>
+        <details class="reveal" data-for="learner"><summary>Is the AI's mark my final mark?</summary><p>No. AI marking gives you fast feedback to learn from. When it's a class task, your tutor reviews it and has the final say.</p></details>
+        <details class="reveal" data-for="tutor"><summary>Can my learners keep sending work on WhatsApp?</summary><p>Yes. Export the WhatsApp chat and import it into Study Acumen. The photos are matched to the right learners' submissions, ready to mark.</p></details>
+        <details class="reveal" data-for="tutor"><summary>Does AI marking decide the final mark?</summary><p>No. The AI gives a first-pass mark and comments on the script. You review and adjust every one before releasing, and you can send a script to a colleague for moderation.</p></details>
+        <details class="reveal" data-for="tutor"><summary>Who pays for AI marking?</summary><p>When you turn on auto-marking for a task, it uses your AI allowance, not your learners'. Most tutors start on the free daily allowance and top up only in busy weeks.</p></details>
         <details class="reveal"><summary>How do I pay for credits?</summary><p>Choose an amount on the Credits page in the app and pay by EFT using the reference shown. Once we've verified the payment, the credits appear in your account. There are no subscriptions or recurring charges.</p></details>
-        <details class="reveal"><summary>Can AI marking replace my teacher?</summary><p>No, and it isn't meant to. AI marking gives a fast first pass and feedback to learn from. Your tutor or teacher reviews it and has the final say.</p></details>
-        <details class="reveal"><summary>I'm a tutor. Can my learners keep sending work on WhatsApp?</summary><p>Yes. Export the WhatsApp chat and import it into Study Acumen. The photos are matched to the right learners' submissions, ready to mark.</p></details>
         <details class="reveal"><summary>Do I need to install anything?</summary><p>No. Study Acumen runs in your browser on phone, tablet or computer, and you can add it to your home screen like an app.</p></details>
       </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
     <section class="section section--dark cta" id="contact">
       <div class="hero__glow hero__glow--cta" aria-hidden="true"></div>
       <div class="container">
         <div class="section__head section__head--center reveal">
           <p class="eyebrow eyebrow--gold">Contact us</p>
-          <h2>Ready to study smarter?</h2>
+          <h2 data-for="none">Ready to get started?</h2>
+          <h2 data-for="learner">Ready to study smarter?</h2>
+          <h2 data-for="tutor">Ready to get your evenings back?</h2>
           <p class="lead">Create a free account in under a minute, or talk to us about tutoring groups, pilots and demos.</p>
         </div>
         <div class="contact reveal">
@@ -388,10 +522,11 @@
         <span>Study Acumen</span>
       </div>
       <nav aria-label="Footer">
+        <a href="?for=learner">For learners</a>
+        <a href="?for=tutor">For tutors &amp; teachers</a>
         <a data-app-link="/login" href="#">Log in</a>
         <a data-app-link="/register" href="#">Sign up</a>
         <a data-app-link="/privacy" href="#">Privacy</a>
-        <a href="#contact">Contact</a>
       </nav>
       <p class="site-footer__copy">© <span id="year">2026</span> Study Acumen. Made in South Africa.</p>
     </div>
