@@ -74,16 +74,6 @@
     }
   });
 
-  // Reveal-on-scroll (content stays visible if IntersectionObserver is missing)
-  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.documentElement.classList.add("js-reveal");
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("is-visible"); io.unobserve(en.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    each(".reveal", function (el) { io.observe(el); });
-  }
 
   // Top-up calculator: R1 = 5,000 tokens; free allowance is 150,000 tokens/day.
   var range = document.getElementById("calc-amount");
